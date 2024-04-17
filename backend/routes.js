@@ -3,6 +3,7 @@ const router = express.Router()
 const CardSchema = require('./db');
 
 router.post('/card',async (req,res)=>{
+    console.log(req);
     try{
         const data = req.body
 
@@ -12,9 +13,7 @@ router.post('/card',async (req,res)=>{
 
         return res.status(200).json({
             data:newCardItem,
-            success:true,
-            message:' card created',
-            err:[]
+        
         })
 
     }catch(error){
@@ -32,7 +31,9 @@ router.post('/card',async (req,res)=>{
 
 // READ - GET All
 router.get('/card', async (req, res) => {
+    console.log(req);
     try {
+
         const cards = await CardSchema.find();
         return res.status(200).json({
             data: cards,
